@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flint Water Crisis - Discrete Math</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>The Flint Water Crisis</h1>
+    <nav>
+      <ul class="tabs">
+
+        <li><a href="#overview" class="tab-link" data-tab="overview">Overview</a></li>
+        <li><a href="#analysis" class="tab-link" data-tab="analysis">Analysis</a></li>
+
+        <li><a href="#future" class="tab-link" data-tab="future">Future Directions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div id="overview" class="tab-content active">
+      <h2>Overview</h2>
+      <p>
+        The Flint water crisis is a good example of the environmental and racial injustices prevalent in the United States, specifically in Michigan. In 2014, Flint, Michigan, switched its water supply to the Flint River as a cost-saving measure. However, the water was not properly treated, which lead to widespread contamination with dangerous levels of lead.
+      </p>
+      <p>
+        This crisis disproportionately impacted Flint’s predominantly African-American and low-income communities. This highlights a broader issue known as 
+      <a href="https://www.opensocietyfoundations.org/voices/environmental-racism-flowing-flint" target="_blank" style="color: #f2a900; text-decoration: underline;">
+        environmental racism.
+      </a> This was a problem that gained focus in the late '80s and '90s when studies showed that state and local governments made decisions about pollution that harmed low-income families of color.
+    </p>
+      <p>
+        Despite numerous complaints from residents and clear evidence of contamination, government officials repeatedly downplayed or ignored the issue. They provided false assurances about water safety and this failure to act underscores the governemnt failures and the diminished power of vulnerable communities.
+      </p>
+    </div>
+
+       <!-- Analysis Tab -->
+       <div id="analysis" class="tab-content">
+        <h2>Analysis: Discrete Mathematics</h2>
+        <h3>Graph Theory: Modeling and Fixing the Water System</h3>
+        <p>
+          The Flint water distribution system can be modeled as a graph, where:
+        </p>
+        <ul>
+          <li><b>Nodes:</b> The nodes represent the locations like water plants, pipeline intersections, and neighborhoods.</li>
+          <li><b>Edges:</b> The edges represent pipelines connecting these nodes.</li>
+        </ul>
+      
+        <p>
+          Below is a simple representation of Flint’s water system, with nodes labeled as follows:
+        </p>
+        <ul>
+          <li><b>T:</b> Water Treatment Plant</li>
+          <li><b>N1, N2:</b> Neighborhoods</li>
+          <li><b>H1, H2:</b> Homes</li>
+        </ul>
+        <canvas id="graphCanvas" width="500" height="500"></canvas>
+      
+        <h4>Suggested Fixes:</h4>
+        <p>
+          Based on this model, here are some fixes for Flint:
+        </p>
+        <ul>
+          <li>
+            <b>Upgrade Critical Nodes:</b> Improve water treatment processes at Node T. Yazdani and Jeffrey (2012) explain, <i>"The failure of even a small percentage of critical components such as source nodes can completely disrupt network operation."</i> This highlights the importance of ensuring proper maintenance and treatment at key nodes to prevent widespread issues. 
+            <a href="https://doi.org/10.48550/arXiv.1104.0121" target="_blank">[Yazdani & Jeffrey, 2012]</a>
+          </li>
+          <li>
+            <b>Neighborhood Prioritization:</b> Focus immediate interventions on neighborhoods like N1, which are in the middle of the network. As central points, they directly impact the flow of water to downstream households and other areas.
+          </li>
+          <li>
+            <b>Decentralized Treatment:</b> Add smaller treatment units closer to neighborhoods, like N1. These systems can lessen the risks associated with failures at central nodes by reducing the stress on them and maintaining local water quality.
+          </li>
+        </ul>
+
+        <h3>Contradictions in Government Statements</h3>
+        <p>
+          During the Flint water crisis, officials said:
+        </p>
+        <ul>
+          <li><b>Statement (P):</b> "The water is safe to drink."</li>
+          <li><b>Statement (Q):</b> "The water does not harm residents."</li>
+          </ul>
+          <p>
+            However, clear evidence of lead poisoning in children directly contradicts these claims. Using logical reasoning covered in class:
+          </p>
+          <ul>
+            <li>
+              If (Q) is false (the water harms residents), then P must also be false (the water is not safe). This inconsistency highlights how misinformation can exacerbate a public health crisis for the convenience of the government.
+            </li>
+          </ul>
+          <p>
+            Evidence of lead poisoning is supported by findings from the Natural Resources Defense Council (NRDC).
+          </p>
+
+      </div>
+
+      
+      <script>
+        // REVISIT HOW TO DRAW THIS ON STACK
+        const canvas = document.getElementById('graphCanvas');
+        const ctx = canvas.getContext('2d');
+      
+        // Node Positions
+        const nodes = {
+          T: { x: 250, y: 100 }, // Treatment Plant
+          N1: { x: 150, y: 250 }, // Neighborhood 1
+          N2: { x: 350, y: 250 }, // Neighborhood 2
+          H1: { x: 100, y: 400 }, // Household 1
+          H2: { x: 400, y: 400 }, // Household 2
+        };
+      
+        // Edges Between Nodes
+        const edges = [
+          ['T', 'N1'],
+          ['T', 'N2'],
+          ['N1', 'H1'],
+          ['N2', 'H2'],
+        ];
+      
+        // Draw Nodes
+        function drawNodes() {
+          for (const node in nodes) {
+            const { x, y } = nodes[node];
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, 2 * Math.PI);
+            ctx.fillStyle = '#f2a900';
+            ctx.fill();
+
+            ctx.stroke();
+            
+            ctx.fillStyle = 'black';
+            ctx.fillText(node, x - 5, y + 5);
+          }
+        }
+      
+        // Draw Edges
+        function drawEdges() {
+          edges.forEach(([from, to]) => {
+            const fromNode = nodes[from];
+            const toNode = nodes[to];
+            ctx.beginPath();
+            ctx.moveTo(fromNode.x, fromNode.y);
+            ctx.lineTo(toNode.x, toNode.y);
+            
+            ctx.strokeStyle = 'gray';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          });
+        }
+      
+        drawEdges();
+        drawNodes();
+      </script>
+      
+    <!-- future -->
+    <div id="future" class="tab-content">
+        <h2>Future Directions</h2>
+        <p>
+          To prevent similar situations, changes are necessary. Key actions like:
+        </p>
+        <ul>
+          <li>Empowering communities to advocate for their rights.</li>
+<li>Implementing stricter environmental laws to protect at-risk communities.</li>
+<li>Using real-world data to identify risks and create effective solutions.</li>
+        </ul>
+        <p>
+          By combining community action, evidence-based policies, and  math analysis, we can create a safer future for all.
+        </p>
+      </div>
+  </main>
+
+  <footer>
+    <p>James Duong 2024</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

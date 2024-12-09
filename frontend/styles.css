@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: url('../image.png'); /* Add your background image path */
+    background-size: cover; /* Make the image cover the entire screen */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep the background fixed while scrolling */
+    color: white; /* Default text color to ensure readability */
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for contrast */
+    color: white;
+    padding: 1.5rem;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  nav {
+    margin: 1rem 0;
+  }
+  
+  .tabs {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .tabs li {
+    margin: 0 1rem;
+  }
+  
+  .tabs a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent tabs */
+    transition: background-color 0.3s;
+  }
+  
+  .tabs a:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker on hover */
+  }
+  
+  .tabs a.active {
+    background-color: #f2a900; /* Highlight active tab */
+    color: black;
+  }
+  
+  .tab-content {
+    display: none;
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for content */
+    color: white; /* Ensure text is readable */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  footer {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark footer for contrast */
+    color: white;
+  }
+  
+  
